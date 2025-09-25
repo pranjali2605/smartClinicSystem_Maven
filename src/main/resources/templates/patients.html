@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patients</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/patients}">Patients</a>
+    <a th:href="@{/doctors}">Doctors</a>
+    <a th:href="@{/appointments}">Appointments</a>
+</div>
+
+<div class="container">
+    <h2 th:text="${patient.id != null} ? 'Edit Patient' : 'Add New Patient'"></h2>
+    <form th:action="${patient.id != null} ? @{'/patients/update/' + ${patient.id}} : @{/patients}"
+          th:object="${patient}" method="post">
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required/><br><br>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required/><br><br>
+
+        <label>Phone:</label>
+        <input type="text" th:field="*{phone}" required/><br><br>
+
+        <button type="submit" class="btn btn-success"
+                th:text="${patient.id != null} ? 'Update' : 'Save'"></button>
+    </form>
+</div>
+
+<div class="container">
+    <div>
+        <form th:action="@{/patients}" method="get">
+            <input type="text" name="keyword" th:value="${keyword}" placeholder="Search by name, email or phone"/>
+            <button type="submit" class="btn btn-success">Search</button>
+            <a th:href="@{/patients}" class="btn btn-success">Clear</a>
+        </form>
+        <br>
+    </div>
+
+    <h2>Patient List</h2>
+    <table class="table">
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Actions</th></tr>
+        <tr th:each="p : ${patients}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.email}"></td>
+            <td th:text="${p.phone}"></td>
+            <td>
+                <a th:href="@{'/patients/edit/' + ${p.id}}" class="btn btn-success">Edit</a>
+                <a th:href="@{'/patients/delete/' + ${p.id}}" class="btn btn-danger"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

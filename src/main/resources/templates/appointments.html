@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Appointments</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/patients}">Patients</a>
+    <a th:href="@{/doctors}">Doctors</a>
+    <a th:href="@{/appointments}">Appointments</a>
+</div>
+
+<div class="container">
+    <h2 th:text="${appointment.id != null} ? 'Edit Appointment' : 'Book Appointment'"></h2>
+    <form th:action="${appointment.id != null} ? @{'/appointments/update/' + ${appointment.id}} : @{/appointments}"
+          th:object="${appointment}" method="post">
+
+        <label>Patient:</label>
+        <select th:field="*{patient.id}" required>
+            <option value="" disabled selected>Select patient</option>
+            <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.name}"
+                    th:selected="${appointment.patient != null and p.id == appointment.patient.id}"></option>
+        </select><br><br>
+
+        <label>Doctor:</label>
+        <select th:field="*{doctor.id}" required>
+            <option value="" disabled selected>Select doctor</option>
+            <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.name}"
+                    th:selected="${appointment.doctor != null and d.id == appointment.doctor.id}"></option>
+        </select><br><br>
+
+        <label>Date & Time:</label>
+        <input type="text" id="appointmentDate" th:field="*{date}" required/><br><br>
+
+        <button type="submit" class="btn btn-success"
+                th:text="${appointment.id != null} ? 'Update' : 'Save'"></button>
+    </form>
+</div>
+
+<div class="container">
+    <div>
+        <input type="text" id="patientSearch" class="search-bar" placeholder="Search by Patient name">
+        <input type="text" id="doctorSearch" class="search-bar" placeholder="Search by Doctor name">
+    </div>
+    <h2>Appointments List</h2>
+    <table class="table" id="appointmentsTable">
+        <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Actions</th></tr>
+        <tr th:each="a : ${appointments}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.patient != null ? a.patient.name : 'N/A'}"></td>
+            <td th:text="${a.doctor != null ? a.doctor.name : 'N/A'}"></td>
+            <td>
+                <span th:if="${a.date != null}"
+                      th:text="${#temporals.format(a.date, 'dd-MM-yyyy hh:mm a')}"></span>
+                <span th:unless="${a.date != null}">N/A</span>
+            </td>
+            <td>
+                <a th:href="@{'/appointments/edit/' + ${a.id}}" class="btn btn-warning">Edit</a>
+                <a th:href="@{'/appointments/delete/' + ${a.id}}" class="btn btn-danger"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#appointmentDate", {
+        enableTime: true,
+        dateFormat: "Y-m-d\\TH:i" ,  // Example: 18-09-2025 11:11 AM
+        altInput: true,
+        altFormat: "d-m-Y h:i K",   // user-friendly display
+        allowInput: false
+    });
+
+    const patientSearch = document.getElementById("patientSearch");
+    const doctorSearch = document.getElementById("doctorSearch");
+    const table = document.getElementById("appointmentsTable");
+
+    function filterTable() {
+        const patientVal = patientSearch.value.toLowerCase();
+        const doctorVal = doctorSearch.value.toLowerCase();
+
+        for (let i = 1; i < table.rows.length; i++) {
+            let patient = table.rows[i].cells[1].innerText.toLowerCase();
+            let doctor = table.rows[i].cells[2].innerText.toLowerCase();
+
+            if (patient.includes(patientVal) && doctor.includes(doctorVal)) {
+                table.rows[i].style.display = "";
+            } else {
+                table.rows[i].style.display = "none";
+            }
+        }
+    }
+
+    patientSearch.addEventListener("keyup", filterTable);
+    doctorSearch.addEventListener("keyup", filterTable);
+</script>
+
+</body>
+</html>

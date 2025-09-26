@@ -6,16 +6,20 @@
 </head>
 <body>
 <div class="navbar">
+    <div class = "logo"><strong>SmartClinic</strong></div>
+    <div class="nav-links">
     <a th:href="@{/}">Home</a>
     <a th:href="@{/patients}">Patients</a>
     <a th:href="@{/doctors}">Doctors</a>
     <a th:href="@{/appointments}">Appointments</a>
+    </div>
 </div>
 
 <div class="container">
     <h2 th:text="${patient.id != null} ? 'Edit Patient' : 'Add New Patient'"></h2>
     <form th:action="${patient.id != null} ? @{'/patients/update/' + ${patient.id}} : @{/patients}"
           th:object="${patient}" method="post">
+
         <label>Name:</label>
         <input type="text" th:field="*{name}" required/><br><br>
 
@@ -24,6 +28,23 @@
 
         <label>Phone:</label>
         <input type="text" th:field="*{phone}" required/><br><br>
+
+        <label>Age:</label>
+        <input type="number" th:field="*{age}" min="0" required/><br><br>
+
+        <label>Gender:</label>
+        <select th:field="*{gender}">
+            <option value="">--Select--</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label>Description (Symptoms/Problem):</label><br>
+        <textarea th:field="*{description}" rows="4" cols="40" placeholder="Describe the issue..."></textarea><br><br>
+
+        <label>Address:</label>
+        <input type="text" th:field="*{address}" placeholder="City / Area"/><br><br>
 
         <button type="submit" class="btn btn-success"
                 th:text="${patient.id != null} ? 'Update' : 'Save'"></button>
@@ -42,19 +63,47 @@
 
     <h2>Patient List</h2>
     <table class="table">
-        <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Actions</th></tr>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Description</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
         <tr th:each="p : ${patients}">
             <td th:text="${p.id}"></td>
             <td th:text="${p.name}"></td>
             <td th:text="${p.email}"></td>
             <td th:text="${p.phone}"></td>
+            <td th:text="${p.age}"></td>
+            <td th:text="${p.gender}"></td>
+            <td th:text="${p.description}"></td>
+            <td th:text="${p.address}"></td>
             <td>
-                <a th:href="@{'/patients/edit/' + ${p.id}}" class="btn btn-success">Edit</a>
-                <a th:href="@{'/patients/delete/' + ${p.id}}" class="btn btn-danger"
-                   onclick="return confirm('Are you sure?')">Delete</a>
+                <div class="action-buttons">
+                    <a th:href="@{'/patients/edit/' + ${p.id}}" class="btn btn-warning">Edit</a>
+                    <a th:href="@{'/patients/delete/' + ${p.id}}" class="btn btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </div>
             </td>
+
         </tr>
     </table>
+</div>
+<div class="footer">
+    <p>&copy; 2025 SmartClinic. All Rights Reserved.</p>
+    <p>📍 Location: Chandigarh, India</p>
+    <p>📧 Email: <a href="mailto:info@smartclinic.com">info@smartclinic.com</a></p>
+    <p>📞 Phone: +91 01234 56789</p>
+    <div class="footer-links">
+        <a th:href="@{/privacy}">Privacy Policy</a> |
+        <a th:href="@{/terms}">Terms of Service</a> |
+        <a th:href="@{/contact}">Contact Us</a>
+    </div>
 </div>
 </body>
 </html>

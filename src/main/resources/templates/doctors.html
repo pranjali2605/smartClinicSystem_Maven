@@ -45,12 +45,23 @@
             <td th:text="${d.name}"></td>
             <td th:text="${d.specialization}"></td>
             <td>
-                <a th:href="@{'/doctors/edit/' + ${d.id}}" class="btn btn-success">Edit</a>
+                <a th:href="@{'/doctors/edit/' + ${d.id}}" class="btn btn-warning">Edit</a>
                 <a th:href="@{'/doctors/delete/' + ${d.id}}" class="btn btn-danger"
                    onclick="return confirm('Are you sure?')">Delete</a>
             </td>
         </tr>
     </table>
+</div>
+<div class="footer">
+    <p>&copy; 2025 SmartClinic. All Rights Reserved.</p>
+    <p>📍 Location: Chandigarh, India</p>
+    <p>📧 Email: <a href="mailto:info@smartclinic.com">info@smartclinic.com</a></p>
+    <p>📞 Phone: +91 01234 56789</p>
+    <div class="footer-links">
+        <a th:href="@{/privacy}">Privacy Policy</a> |
+        <a th:href="@{/terms}">Terms of Service</a> |
+        <a th:href="@{/contact}">Contact Us</a>
+    </div>
 </div>
 </body>
 </html>

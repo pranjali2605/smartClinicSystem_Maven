@@ -6,8 +6,19 @@ body {
 }
 
 .navbar {
-    background-color: #45a049;
-    padding: 15px;
+     background-color: #096161;
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 30px;
+
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 40px;
+      color:#92a0a1
 }
 
 .navbar a {
@@ -17,8 +28,15 @@ body {
     font-weight: bold;
 }
 
+.nav-links a {
+    margin: 0 8px; /* reduced spacing between links */
+    text-decoration: none;
+    color: #d5dbdb;
+}
+
 .navbar a:hover {
     text-decoration: underline;
+    color: #91abab;
 }
 
 .container {
@@ -60,7 +78,27 @@ h2 {
 }
 
 .table th {
-    background: #45a049;
+    background: #096161;
     color: white;
     text-align: left;
+}
+
+.footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #096161;
+    background: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+
+.footer a {
+    color: #293030
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }

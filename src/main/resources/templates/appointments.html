@@ -8,10 +8,14 @@
 </head>
 <body>
 <div class="navbar">
-    <a th:href="@{/}">Home</a>
-    <a th:href="@{/patients}">Patients</a>
-    <a th:href="@{/doctors}">Doctors</a>
-    <a th:href="@{/appointments}">Appointments</a>
+    <div class="logo"><strong>SmartClinic</strong></div>
+    <div class="nav-links">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/patients}">Patients</a>
+        <a th:href="@{/doctors}">Doctors</a>
+        <a th:href="@{/appointments}">Appointments</a>
+        <a th:href="@{/about}">About Us</a> <!-- Added -->
+    </div>
 </div>
 
 <div class="container">
@@ -67,6 +71,14 @@
     </table>
 
 </div>
+<div class="footer">
+    <p>&copy; 2025 SmartClinic. All Rights Reserved.</p>
+    <p>📍 Chandigarh, India | 📧 <a href="mailto:info@smartclinic.com">info@smartclinic.com</a> | 📞 +91 01234 56789</p>
+    <div class="footer-links">
+        <a th:href="@{/privacy}">Privacy Policy</a> |
+        <a th:href="@{/terms}">Terms of Service</a> |
+        <a th:href="@{/contact}">Contact Us</a>
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>

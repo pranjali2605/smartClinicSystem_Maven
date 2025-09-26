@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
     <style>
         .hero {
+<<<<<<< HEAD
     background: url('https://img.freepik.com/free-photo/health-still-life-with-copy-space_23-2148854031.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center/cover;
     height: 400px;
     display: flex;
@@ -39,6 +40,42 @@
     width: 100%; /* full width */
     max-width: 1000px; /* optional: limit max width */
 }
+=======
+            background: url('https://img.freepik.com/free-photo/health-still-life-with-copy-space_23-2148854031.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: flex-end; /* text on right */
+            align-items: center;
+            padding: 20px 60px;
+            border-radius: 10px;
+            color: white;
+            text-align: right;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .hero-text span {
+            color: #293636;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            max-width: 400px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%; /* full width */
+            max-width: 1000px; /* optional: limit max width */
+        }
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
 
         .card {
             background: #f9f9f9;
@@ -56,6 +93,7 @@
             color: #333;
         }
         .dashboard .btn {
+<<<<<<< HEAD
     background: #096161; /* new button color */
     color: white;
     padding: 10px 20px;
@@ -69,6 +107,162 @@
 .dashboard .btn:hover {
     background: #074c4c; /* slightly darker on hover */
 }
+=======
+            background: #096161; /* new button color */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .dashboard .btn:hover {
+            background: #074c4c; /* slightly darker on hover */
+        }
+
+        .features-title {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            color: #096161;
+        }
+
+        .features-title h2 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        .about {
+            text-align: center;
+            margin: 60px auto;
+            max-width: 1000px;
+        }
+
+        .about h2 {
+            font-size: 28px;
+            color: #096161;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .about-text h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .about-text p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .about img {
+            flex: 1;
+            max-width: 300px;
+            aspect-ratio: 1 / 1; /* square image */
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .about-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Testimonials */
+.testimonials {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f8f9fa;
+}
+.testimonials h2 {
+    color: #096161;
+    margin-bottom: 30px;
+}
+.testimonial-slider {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+.testimonial {
+    display: none;
+    font-style: italic;
+    font-size: 18px;
+    color: #333;
+}
+.testimonial.active {
+    display: block;
+}
+.testimonial h4 {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #096161;
+}
+
+.cta-banner {
+    background: linear-gradient(135deg, #096161, #7ad6d6);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin: 40px 0 0 0;
+}
+.cta-banner h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+.cta-banner p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.cta-btn {
+    background: white;
+    color: #096161;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.cta-btn:hover {
+    background: #d5dbdb;
+    color: #074c4c;
+}
+
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
         .footer {
             margin-top: 40px;
             text-align: center;
@@ -79,30 +273,47 @@
 </head>
 <body>
 <div class="navbar">
+<<<<<<< HEAD
     <div class="logo"><strong>SC</strong></div>
+=======
+    <div class="logo"><strong>SmartClinic</strong></div>
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
     <div class="nav-links">
         <a th:href="@{/}">Home</a>
         <a th:href="@{/patients}">Patients</a>
         <a th:href="@{/doctors}">Doctors</a>
         <a th:href="@{/appointments}">Appointments</a>
+<<<<<<< HEAD
         <a th:href="@{/about}">About Us</a> <!-- Added -->
+=======
+        <a th:href="@{/about}">About Us</a>
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
     </div>
 </div>
 
 <div class="hero">
     <div class="hero-text">
         <h1>Welcome to <span>SmartClinic!</span></h1>
+<<<<<<< HEAD
         <p>Manage your data of patients, doctors, and appointments all in one place.</p>
+=======
+        <p>SmartClinic simplifies healthcare management, making scheduling, patient records, and doctor communication effortless—all in one place.</p>
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
     </div>
 </div>
 
 <div class="container">
+<<<<<<< HEAD
+=======
+    <div class="features-title">
+        <h2>Our Features</h2>
+    </div>
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
 
-    <!-- Quick Actions -->
     <div class="dashboard">
         <div class="card">
             <h3>Patients</h3>
-            <p>View, search, add and manage patients.</p>
+            <p>Check patients’ records here</p>
             <a th:href="@{/patients}" class="btn">Go to Patients</a>
         </div>
 
@@ -120,11 +331,68 @@
     </div>
 </div>
 
+<div class="about">
+    <h2>About Us</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <p>SmartClinic is a next-generation healthcare management system designed to simplify hospital operations. We aim to make scheduling, record keeping, and communication effortless for both patients and medical staff.</p>
+            <h3>Our Mission</h3>
+            <p>To provide seamless digital healthcare solutions that improve hospital efficiency and patient care.</p>
+            <h3>Our Vision</h3>
+            <p>To become the leading healthcare platform that connects patients and doctors effortlessly worldwide.</p>
+        </div>
+        <img src="https://img.freepik.com/free-vector/healthcare-illustration-concept_23-2148542214.jpg?semt=ais_hybrid" alt="About SmartClinic">
+    </div>
+
+    <div class="about-boxes">
+        <div class="about-box">
+            <h3>Our Mission</h3>
+            <p>Seamlessly connect patients and doctors with modern digital healthcare tools and keep their data safe.</p>
+        </div>
+        <div class="about-box">
+            <h3>Our Vision</h3>
+            <p>To simplify healthcare processes and empower hospitals with innovative solutions and their records.</p>
+        </div>
+        <div class="about-box">
+            <h3>Why Choose Us?</h3>
+            <p>We provide an all-in-one healthcare management system with a patient-first approach.</p>
+        </div>
+    </div>
+</div>
+
+<div class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-slider">
+        <div class="testimonial active">
+            <p>"SmartClinic made managing appointments so easy! Highly recommend it."</p>
+            <h4>- Patient</h4>
+        </div>
+        <div class="testimonial">
+            <p>"I can now track all my patients' records in one place. A game changer!"</p>
+            <h4>- Dr. Sharma</h4>
+        </div>
+        <div class="testimonial">
+            <p>"The best system we’ve used so far to streamline hospital operations."</p>
+            <h4>- Hospital Admin</h4>
+        </div>
+    </div>
+</div>
+
+<div class="cta-banner">
+    <h2>Join SmartClinic Today!</h2>
+    <p>Simplify healthcare management for your hospital, doctors, and patients.</p>
+    <a href="/register" class="cta-btn">Get Started</a>
+</div>
+
 <div class="footer">
     <p>&copy; 2025 SmartClinic. All Rights Reserved.</p>
     <p>📍 Location: Chandigarh, India</p>
     <p>📧 Email: <a href="mailto:info@smartclinic.com">info@smartclinic.com</a></p>
+<<<<<<< HEAD
     <p>📞 Phone: +91 98765 43210</p>
+=======
+    <p>📞 Phone: +91 01234 56789</p>
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
     <div class="footer-links">
         <a th:href="@{/privacy}">Privacy Policy</a> |
         <a th:href="@{/terms}">Terms of Service</a> |
@@ -132,6 +400,23 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+<script>
+    let index = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+
+    function showTestimonial() {
+        testimonials.forEach((t, i) => {
+            t.classList.remove('active');
+            if (i === index) t.classList.add('active');
+        });
+        index = (index + 1) % testimonials.length;
+    }
+
+    setInterval(showTestimonial, 4000); // Change every 4 seconds
+</script>
+>>>>>>> 5b64e9d1b1738b99f77bf07b103affb6abdf1731
 
 </body>
 </html>

@@ -12,7 +12,6 @@
         <a th:href="@{/patients}">Patients</a>
         <a th:href="@{/doctors}">Doctors</a>
         <a th:href="@{/appointments}">Appointments</a>
-        <a th:href="@{/about}">About Us</a>
     </div>
 </div>
 
@@ -32,11 +31,6 @@
         <label>Contact:</label>
         <input type="text" th:field="*{contact}" /><br><br>
 
-        <label>Qualifications:</label>
-        <input type="text" th:field="*{qualifications}" /><br><br>
-
-        <label>Available Time Slots:</label>
-        <input type="text" th:field="*{timeSlots}" placeholder="e.g., 9am-12pm, 2pm-5pm"/><br><br>
 
         <button type="submit" class="btn btn-success"
                 th:text="${doctor.id != null} ? 'Update' : 'Save'"></button>
@@ -60,14 +54,13 @@
 
     <table class="table">
         <tr>
-            <th>ID</th><th>Name</th><th>Specialization</th><th>Contact</th><th>Time Slots</th><th>Actions</th>
+            <th>ID</th><th>Name</th><th>Specialization</th><th>Contact</th><th>Actions</th>
         </tr>
         <tr th:each="d : ${doctors}">
             <td th:text="${d.id}"></td>
             <td th:text="${d.name}"></td>
             <td th:text="${d.specialization}"></td>
             <td th:text="${d.contact}"></td>
-            <td th:text="${d.timeSlots}"></td>
             <td>
                 <a th:href="@{'/doctors/edit/' + ${d.id}}" class="btn btn-warning">Edit</a>
                 <a th:href="@{'/doctors/delete/' + ${d.id}}" class="btn btn-danger"

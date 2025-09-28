@@ -17,8 +17,4 @@ public class AuthController {
         return "login"; // login.html
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register"; // register.html
-    }
 }

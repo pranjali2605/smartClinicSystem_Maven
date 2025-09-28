@@ -44,19 +44,19 @@ public class AppointmentController {
     }
 
     // ✅ Save new appointment
-    @PostMapping
-    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment) {
-        if (appointment.getPatient() != null && appointment.getPatient().getId() != null) {
-            Patient patient = patientService.getPatientById(appointment.getPatient().getId());
-            appointment.setPatient(patient);
-        }
-        if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null) {
-            Doctor doctor = doctorService.getDoctorById(appointment.getDoctor().getId());
-            appointment.setDoctor(doctor);
-        }
-        appointmentService.saveAppointment(appointment);
-        return "redirect:/appointments";
-    }
+//    @PostMapping
+//    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment) {
+//        if (appointment.getPatient() != null && appointment.getPatient().getId() != null) {
+//            Patient patient = patientService.getPatientById(appointment.getPatient().getId());
+//            appointment.setPatient(patient);
+//        }
+//        if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null) {
+//            Doctor doctor = doctorService.getDoctorById(appointment.getDoctor().getId());
+//            appointment.setDoctor(doctor);
+//        }
+//        appointmentService.saveAppointment(appointment);
+//        return "redirect:/appointments";
+//    }
 
     // ✅ Edit appointment (reuse same page)
     @GetMapping("/edit/{id}")
@@ -80,9 +80,9 @@ public class AppointmentController {
             if (appointment.getPatient() != null && appointment.getPatient().getId() != null) {
                 existing.setPatient(patientService.getPatientById(appointment.getPatient().getId()));
             }
-            if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null) {
-                existing.setDoctor(doctorService.getDoctorById(appointment.getDoctor().getId()));
-            }
+//            if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null) {
+//                existing.setDoctor(doctorService.getDoctorById(appointment.getDoctor().getId()));
+//            }
 
             appointmentService.saveAppointment(existing);
         }

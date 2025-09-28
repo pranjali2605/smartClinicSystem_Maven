@@ -44,12 +44,29 @@ public class PatientController {
     }
 
     // Edit patient (prefill form)
+//    @GetMapping("/edit/{id}")
+//    public String editPatient(@PathVariable Long id, Model model) {
+//        model.addAttribute("patients", patientService.getAllPatients());
+//        model.addAttribute("patient", patientService.getPatientById(id));
+//        return "patients";
+//    }
+
     @GetMapping("/edit/{id}")
     public String editPatient(@PathVariable Long id, Model model) {
+        patientService.getAllPatients().stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .ifPresentOrElse(
+                        patient -> {
+                            model.addAttribute("patient", patient);
+                            model.addAttribute("history", patientService.getPatientHistory(id));
+                        },
+                        () -> model.addAttribute("errorMessage", "Patient not found")
+                );
         model.addAttribute("patients", patientService.getAllPatients());
-        model.addAttribute("patient", patientService.getPatientById(id));
         return "patients";
     }
+
 
     // Update patient
     @PostMapping("/update/{id}")
@@ -75,4 +92,6 @@ public class PatientController {
         patientService.deletePatient(id);
         return "redirect:/patients";
     }
+
+
 }

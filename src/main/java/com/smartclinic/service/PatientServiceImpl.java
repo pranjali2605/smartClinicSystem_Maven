@@ -1,8 +1,10 @@
 package com.smartclinic.service;
 
+import com.smartclinic.model.Doctor;
 import com.smartclinic.model.Patient;
+import com.smartclinic.model.PatientHistory;
 import com.smartclinic.repository.PatientRepository;
-import com.smartclinic.service.PatientService;
+import com.smartclinic.repository.PatientHistoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,14 +13,21 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
+    private final PatientHistoryRepository historyRepository;
 
-    public PatientServiceImpl(PatientRepository patientRepository) {
+    public PatientServiceImpl(PatientRepository patientRepository, PatientHistoryRepository historyRepository) {
         this.patientRepository = patientRepository;
+        this.historyRepository = historyRepository;
     }
 
     @Override
     public Patient savePatient(Patient patient) {
-        return patientRepository.save(patient);
+        Patient saved = patientRepository.save(patient);
+
+        // Save to history
+        historyRepository.save(new PatientHistory(saved));
+
+        return saved;
     }
 
     @Override
@@ -41,5 +50,12 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findByNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrPhoneContainingIgnoreCase(
                 keyword, keyword, keyword);
     }
+
+    // new method for history
+    @Override
+    public List<PatientHistory> getPatientHistory(Long patientId) {
+        return historyRepository.findByPatientId(patientId);
+    }
+
 
 }

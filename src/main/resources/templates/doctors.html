@@ -12,42 +12,62 @@
         <a th:href="@{/patients}">Patients</a>
         <a th:href="@{/doctors}">Doctors</a>
         <a th:href="@{/appointments}">Appointments</a>
-        <a th:href="@{/about}">About Us</a> <!-- Added -->
+        <a th:href="@{/about}">About Us</a>
     </div>
 </div>
 
 <div class="container">
     <h2 th:text="${doctor.id != null} ? 'Edit Doctor' : 'Add New Doctor'"></h2>
+
     <form th:action="${doctor.id != null} ? @{'/doctors/update/' + ${doctor.id}} : @{/doctors}"
           th:object="${doctor}" method="post">
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required/><br><br>
+        <input type="text" th:field="*{name}" />
+        <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br><br>
 
         <label>Specialization:</label>
-        <input type="text" th:field="*{specialization}" required/><br><br>
+        <input type="text" th:field="*{specialization}" />
+        <div class="text-danger" th:if="${#fields.hasErrors('specialization')}" th:errors="*{specialization}"></div><br><br>
+
+        <label>Contact:</label>
+        <input type="text" th:field="*{contact}" /><br><br>
+
+        <label>Qualifications:</label>
+        <input type="text" th:field="*{qualifications}" /><br><br>
+
+        <label>Available Time Slots:</label>
+        <input type="text" th:field="*{timeSlots}" placeholder="e.g., 9am-12pm, 2pm-5pm"/><br><br>
 
         <button type="submit" class="btn btn-success"
                 th:text="${doctor.id != null} ? 'Update' : 'Save'"></button>
     </form>
+
+    <div th:if="${doctor.history != null}">
+        <h3>Doctor History</h3>
+        <ul>
+            <li th:each="h : ${doctor.history}" th:text="${h}"></li>
+        </ul>
+    </div>
 </div>
 
 <div class="container">
-    <div>
-        <form th:action="@{/doctors}" method="get">
-            <input type="text" name="keyword" th:value="${keyword}" placeholder="Search by name or specialization"/>
-            <button type="submit" class="btn btn-success">Search</button>
-            <a th:href="@{/doctors}" class="btn btn-success">Clear</a>
-        </form>
-        <br>
-    </div>
-
     <h2>Doctor List</h2>
+    <form th:action="@{/doctors}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Search by name or specialization"/>
+        <button type="submit" class="btn btn-success">Search</button>
+        <a th:href="@{/doctors}" class="btn btn-success">Clear</a>
+    </form>
+
     <table class="table">
-        <tr><th>ID</th><th>Name</th><th>Specialization</th><th>Actions</th></tr>
+        <tr>
+            <th>ID</th><th>Name</th><th>Specialization</th><th>Contact</th><th>Time Slots</th><th>Actions</th>
+        </tr>
         <tr th:each="d : ${doctors}">
             <td th:text="${d.id}"></td>
             <td th:text="${d.name}"></td>
             <td th:text="${d.specialization}"></td>
+            <td th:text="${d.contact}"></td>
+            <td th:text="${d.timeSlots}"></td>
             <td>
                 <a th:href="@{'/doctors/edit/' + ${d.id}}" class="btn btn-warning">Edit</a>
                 <a th:href="@{'/doctors/delete/' + ${d.id}}" class="btn btn-danger"
@@ -56,15 +76,10 @@
         </tr>
     </table>
 </div>
+
 <div class="footer">
     <p>&copy; 2025 SmartClinic. All Rights Reserved.</p>
     <p>📍 Chandigarh, India | 📧 <a href="mailto:info@smartclinic.com">info@smartclinic.com</a> | 📞 +91 01234 56789</p>
-    <div class="footer-links">
-        <a th:href="@{/privacy}">Privacy Policy</a> |
-        <a th:href="@{/terms}">Terms of Service</a> |
-        <a th:href="@{/contact}">Contact Us</a>
-    </div>
 </div>
-
 </body>
 </html>

@@ -7,6 +7,7 @@ import com.smartclinic.repository.DoctorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,9 +23,30 @@ public class DoctorServiceImpl implements DoctorService {
         this.doctorHistoryRepository = doctorHistoryRepository;
     }
 
+//    @Override
+//    public Doctor saveDoctor(Doctor doctor) {
+//        return doctorRepository.save(doctor);
+//    }
+
     @Override
     public Doctor saveDoctor(Doctor doctor) {
-        return doctorRepository.save(doctor);
+        // Save doctor in MySQL
+        Doctor savedDoctor = doctorRepository.save(doctor);
+
+        // Save history in MongoDB
+        DoctorHistory history = new DoctorHistory(
+                savedDoctor.getId(),
+                savedDoctor.getName(),
+                Collections.singletonList(savedDoctor.getSpecialization()),
+                Collections.singletonList(savedDoctor.getTimeSlots()),
+                savedDoctor.getContact(),
+                savedDoctor.getQualifications(),
+                new Date()
+        );
+
+        doctorHistoryRepository.save(history);
+
+        return savedDoctor;
     }
 
     @Override

@@ -12,26 +12,34 @@ public class Patient {
     private Long id;
 
     @NotBlank(message = "Name is required")
+    @Size(max = 100, message = "Name must be less than 100 characters")
     private String name;
 
-    @Email
+    @Email(message = "Invalid email format")
     @NotBlank(message = "Email is required")
+    @Size(max = 100, message = "Email must be less than 100 characters")
     private String email;
 
     @NotBlank(message = "Phone is required")
+    @Pattern(regexp = "\\d{10}", message = "Phone must be exactly 10 digits")
     private String phone;
 
+    @NotNull(message = "Age is required")
     @Min(value = 0, message = "Age must be positive")
+    @Max(value = 120, message = "Age must be realistic")
     private Integer age;
 
+    @NotBlank(message = "Gender is required")
+    @Pattern(regexp = "Male|Female|Other", message = "Gender must be Male, Female, or Other")
     private String gender;
 
-    @Column(length = 1000) // allow longer descriptions
+    @Size(max = 1000, message = "Description must be less than 1000 characters")
     private String description;
 
+    @Size(max = 200, message = "Address must be less than 200 characters")
     private String address;
 
-    // Getters and setters
+    // Getters & setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -1,7 +1,7 @@
 package com.smartclinic.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -13,19 +13,27 @@ public class Doctor {
     private Long id;
 
     @NotBlank(message = "Doctor name is required")
+    @Size(max = 100, message = "Name must be less than 100 characters")
     private String name;
 
     @NotBlank(message = "Specialization is required")
+    @Size(max = 50, message = "Specialization must be less than 50 characters")
     private String specialization;
 
+    @NotBlank(message = "Contact number is required")
+    @Pattern(regexp = "\\d{10}", message = "Contact number must be exactly 10 digits")
     private String contact;
+
+    @Size(max = 200, message = "Qualifications must be less than 200 characters")
     private String qualifications;
+
+    @Size(max = 100, message = "Time slots description must be less than 100 characters")
     private String timeSlots;
 
     @Transient
     private List<String> history; // MongoDB history
 
-    // getters & setters
+    // Getters & setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -43,20 +43,22 @@ public class AppointmentController {
         return "appointments"; // appointments.html
     }
 
-    // ✅ Save new appointment
-//    @PostMapping
-//    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment) {
-//        if (appointment.getPatient() != null && appointment.getPatient().getId() != null) {
-//            Patient patient = patientService.getPatientById(appointment.getPatient().getId());
-//            appointment.setPatient(patient);
-//        }
-//        if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null) {
-//            Doctor doctor = doctorService.getDoctorById(appointment.getDoctor().getId());
-//            appointment.setDoctor(doctor);
-//        }
-//        appointmentService.saveAppointment(appointment);
-//        return "redirect:/appointments";
-//    }
+//     ✅ Save new appointment
+    @PostMapping
+    public String saveAppointment(@ModelAttribute("appointment") Appointment appointment) {
+        if (appointment.getPatient() != null && appointment.getPatient().getId() != null) {
+            Patient patient = patientService.getPatientById(appointment.getPatient().getId());
+            appointment.setPatient(patient);
+        }
+        if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null) {
+            Doctor doctor = doctorService.getDoctorById(appointment.getDoctor().getId())
+                    .orElseThrow(() -> new RuntimeException("Doctor not found"));
+            appointment.setDoctor(doctor);
+        }
+
+        appointmentService.saveAppointment(appointment);
+        return "redirect:/appointments";
+    }
 
     // ✅ Edit appointment (reuse same page)
     @GetMapping("/edit/{id}")

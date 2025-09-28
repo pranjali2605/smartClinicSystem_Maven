@@ -1,6 +1,8 @@
 package com.smartclinic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Future;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -15,17 +17,21 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
+    @NotNull(message = "Patient is required")
     private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
+    @NotNull(message = "Doctor is required")
     private Doctor doctor;
 
     @Column(name = "appointment_date", nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull(message = "Appointment date is required")
+    @Future(message = "Appointment date must be in the future")
     private LocalDateTime date;
 
-    // getters and setters
+    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
